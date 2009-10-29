@@ -1,0 +1,22 @@
+= Acrophonics, aka Spelling Alphabets (Alpha, Bravo, Charlie)
+
+This project is a Sinatra application and accompanying database of spelling 
+alphabets from around the world.
+
+A spelling alphabet, radio alphabet, or telephone alphabet is a set of words which 
+are used to stand for the letters of an alphabet. Each word in the spelling alphabet 
+typically replaces the name of the letter with which it starts (acrophony). It is 
+used to spell out words when speaking to someone not able to see the speaker, meaning 
+there are no visual cues which assist the listener (the McGurk effect, see below). 
+Giving one's name over the telephone is a common scenario where a spelling alphabet 
+is often used. Spelling alphabets are often called phonetic alphabets. However, 
+phonetic transcription systems such as the International Phonetic Alphabet are 
+designed to record detailed information about the sounds of human speech. As written 
+representations of spoken sounds, they are utterly different from spelling alphabets, 
+which are spoken representations of written symbols.
+
+This truly frustrating video demonstrates the McGurk Effect: 
+{http://www.youtube.com/watch?v=aFPtc8BVdJk}[http://www.youtube.com/watch?v=aFPtc8BVdJk]
+
+This app was inspired by the collection of alphabets found at 
+{http://www.bckelk.ukfsn.org/phon.full.html}[http://www.bckelk.ukfsn.org/phon.full.html]

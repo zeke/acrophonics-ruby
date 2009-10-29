@@ -1,0 +1,11 @@
+%p
+  Notes:
+  = @alphabet.notes
+  
+%p
+  Year: 
+  = @alphabet.year
+
+%p
+  Words: 
+  = @alphabet.letters.map{|letter| letter.word }.join(" ")

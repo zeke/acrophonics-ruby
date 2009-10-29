@@ -1,0 +1,6 @@
+-for alphabet in @alphabets
+  %div.spelling
+    %p.spelling= alphabet.spell(@query.phrase)
+    %p.source
+      = link_to(alphabet.name, "/alphabets/#{alphabet.id}")
+      = "(#{alphabet.language.strip})" unless alphabet.language.nil? || alphabet.language.empty?

@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %title= @title || SiteConfig.title
+    
+    / Stylesheets
+    = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+    = stylesheet_link_tag "blueprint/print", :media => "print"
+    == <!--[if IE]>
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+    == <![endif]-->
+    = stylesheet_link_tag "custom", :media => "screen, projection"
+    = stylesheet_link_tag %w(stylesheet)
+    
+    / Javascripts
+    = javascript_include_tag %w(jquery-1.3.2.min application)
+
+  %body
+    #main_column
+      = header
+      #content= yield
+      #footer
+        %p
+          Another
+          = link_to "Zeke Sikelianos", "http://zeke.sikelianos.com"
+          joint. Check out the source at 
+          = link_to "github/zeke/acrophonics", "http://github.com/zeke/acrophonics"
+          
+    #sidebar
+      = link_to(image_tag("operator.jpg"), "/")
+      
+      %h2 Try it out
+      %form{:action => "/spellpost", :method => "post", :id => "search"}
+        %input{:type => "text", :name => "phrase", :class => "text watermarkable", :value => (@query ? @query.phrase : ""), :title => "Enter a word or phrase"}
+        %button{:type => "submit"}
+          = image_tag "button.png"
+
+      %h2 Recent queries
+      %ul.queries
+        -for query in @queries
+          %li= link_to(query.phrase, "/spell/#{query.phrase}")
+    
+      = yield_content :sidebar
