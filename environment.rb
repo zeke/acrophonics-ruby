@@ -3,6 +3,7 @@ require 'dm-core'
 require 'dm-timestamps'
 require 'dm-validations'
 require 'dm-aggregates'
+require 'dm-serializer'
 require 'haml'
 require 'ostruct'
 

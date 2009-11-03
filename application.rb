@@ -32,11 +32,18 @@ helpers do
       all << content_tag(:li, item, :class => css.join(" "))
     end.join("\n")
   end
+
+  def save_query(phrase)
+    @query = Query.first(:phrase => phrase) || Query.new(:phrase => phrase)
+    @query.save # This will increment the hit count, whether @query is new or not.
+  end
+  
 end
 
 before do
   headers "Content-Type" => "text/html; charset=utf-8"
   @queries = Query.all(:order => [:created_at.desc], :limit => 20)
+  
 end
 
 get '/' do
@@ -49,14 +56,36 @@ post '/spellpost' do
 end
 
 get '/spell/:phrase' do
-  @query = Query.first(:phrase => params[:phrase]) || Query.new(:phrase => params[:phrase])
-  @query.save # This will increment the hit count, whether @query is new or not.
+  save_query(params[:phrase])
   @alphabets = Alphabet.all
   haml :spell
 end
 
-get '/alphabets/:id' do
-  @alphabet = Alphabet.get(params[:id])
+get '/alphabets/:permalink/spell/*.*' do
+  phrase = params[:splat].first
+  save_query(phrase)
+  @alphabet = Alphabet.first(:permalink => params[:permalink])
+  
+  content_type 'application/json', :charset => 'utf-8'
+  @alphabet.spell(phrase).to_json
+end
+
+get '/alphabets/:permalink/spell/:phrase' do
+  @alphabets = [Alphabet.first(:permalink => params[:permalink])]
+  save_query(params[:phrase])
+  haml :spell
+end
+
+get '/alphabets/*.*' do
+  permalink = params[:splat].first
+  @alphabet = Alphabet.first(:permalink => permalink)
+
+  content_type 'application/json', :charset => 'utf-8'  
+  @alphabet.to_json(:methods => [:words], :exclude => [:id, :created_at, :updated_at])
+end
+
+get '/alphabets/:permalink' do
+  @alphabet = Alphabet.first(:permalink => params[:permalink])
   haml :alphabet
 end
 
