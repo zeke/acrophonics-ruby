@@ -5,4 +5,4 @@ dm-aggregates
 dm-serializer
 haml
 ratpack --source gemcutter.org
-sinatra-content-fo --source gemcutter.org
+sinatra-content-for --source gemcutter.org
