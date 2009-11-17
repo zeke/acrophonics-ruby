@@ -30,9 +30,11 @@ class Alphabet
     spelling.join(" ")
   end
   
+  # Shouldn't have to add the alphabet_id part, but heroku or postgres is not 
+  # making the relation happen without it. WTF?
   def import_letters(alphabet_string)
     alphabet_string.strip.downcase.split(" ").each do |w|
-      self.letters.create!(:character => w[0,1], :word => w)
+      self.letters.create!(:character => w[0,1], :word => w, :alphabet_id => self.id)
     end
   end
   
