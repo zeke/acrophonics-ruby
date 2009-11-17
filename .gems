@@ -1,0 +1,8 @@
+dm-core
+dm-timestamps
+dm-validations
+dm-aggregates
+dm-serializer
+haml
+ratpack --source gemcutter.org
+sinatra-content-fo --source gemcutter.org
