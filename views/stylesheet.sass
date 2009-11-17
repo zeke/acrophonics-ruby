@@ -6,16 +6,24 @@
   font-family: "droid_sans"
   src: url('../fonts/droid_sans.ttf') format('truetype')
 
+!red = #a41801
+!brown = #5e4023
+
 body
   :font-family "typewriter", Georgia, serif
-  :background-color white
+  background: #B8A079 url(../images/bg.jpg) repeat
   :color #444
-  :padding 15px
+  
+#bar
+  height: 25px
+  margin: 0 0 15px 0
+  background: red url(../images/bar.png) repeat
   
 #main_column
   float: left
   width: 660px
   margin-right: 25px
+  padding: 15px
   
 #sidebar
   float: left
@@ -25,7 +33,7 @@ ul#header
   float: none
   clear: both
   overflow: hidden
-  margin: 40px 0 20px 0
+  margin: 20px 0 20px 0
   padding: 0
   li
     display: block
@@ -56,8 +64,11 @@ form
       font-size: 1.3em
       padding: 4px
       width: 200px
+      background: transparent
+      border: 1px solid black
     &.watermark
-      color: #999
+      color: black
+      opacity: .5
     
   button
     cursor: pointer
@@ -73,14 +84,14 @@ h2
   :margin 20px 0 2px 0
 
 a
-  color: #B83800
+  color = !red
   text-decoration: none
  
  
 div.spelling 
   margin-bottom: 15px
 p
-  color: #333
+  color: black
   font-size: 1.1em
   line-height: 1.5em
   padding: 0
@@ -93,7 +104,7 @@ p
     :font-size 1.3em
   &.source
     :font-size .9em
-    :color #999
+    color = !brown
 
 ul.queries
   margin: 5px 0
@@ -110,4 +121,4 @@ ul.queries
   margin: 30px 0 0 0
   p
     font-size: .9em
-    color: #999
+    color = !brown

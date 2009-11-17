@@ -14,8 +14,8 @@ else
 end
 
 namespace :db do
-  desc 'Auto-migrate the database (destroys data)'
-  task :migrate => :environment do
+  desc 'auto_migrate the database (destroys data)'
+  task :rebuild => :environment do
     DataMapper.auto_migrate!
   end
 
@@ -23,9 +23,10 @@ namespace :db do
   task :upgrade => :environment do
     DataMapper.auto_upgrade!
   end
-  
+
+  desc 'rebuilds the database and imports delimited alphabet data'
   task :import => :environment do
-    DataMapper.auto_upgrade!
+    DataMapper.auto_migrate!
     f = File.open("alphabets.csv")
     f.readlines.each do |line|
       parts = line.split(";")

@@ -61,6 +61,11 @@ get '/spell/:phrase' do
   haml :spell
 end
 
+get '/alphabets' do
+  @alphabets = Alphabet.all
+  haml :alphabets
+end
+
 get '/alphabets/:permalink/spell/*.*' do
   phrase = params[:splat].first
   save_query(phrase)

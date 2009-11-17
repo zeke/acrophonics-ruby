@@ -16,6 +16,8 @@
     = javascript_include_tag %w(jquery-1.3.2.min application)
 
   %body
+    #bar
+      &nbsp;
     #main_column
       = header
       #content= yield
@@ -27,7 +29,7 @@
           = link_to "github/zeke/acrophonics", "http://github.com/zeke/acrophonics"
           
     #sidebar
-      = link_to(image_tag("operator.jpg"), "/")
+      = link_to(image_tag("operator.png"), "/")
       
       %h2 Try it out
       %form{:action => "/spellpost", :method => "post", :id => "search"}
