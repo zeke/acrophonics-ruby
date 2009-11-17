@@ -14,7 +14,9 @@ class Alphabet
   validates_present :name
   validates_is_unique :permalink
   
-  before :create, :generate_permalink
+  before :create do
+    generate_permalink
+  end
   before :save, :generate_permalink
   
   def spell(phrase)
@@ -28,9 +30,9 @@ class Alphabet
     spelling.join(" ")
   end
   
-  def import_letters(words)
-    words.strip.downcase.split(" ").each do |word|
-      self.letters.create!(:character => word[0,1], :word => word)
+  def import_letters(alphabet_string)
+    alphabet_string.strip.downcase.split(" ").each do |w|
+      self.letters.create!(:character => w[0,1], :word => w)
     end
   end
   
@@ -48,7 +50,7 @@ class Alphabet
     gsub(/\_*$/, '').
     downcase
     
-    # Add suffix
+    # Add suffix (only if being called for a second/third/fourth.. time)
     self.permalink += "_#{suffix}" unless suffix == 0
     
     # If the permalink is taken, increment the suffix integer and try again

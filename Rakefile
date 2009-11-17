@@ -39,6 +39,9 @@ namespace :db do
       )
       a.import_letters(parts[4])
     end
+    
+    # Save all alphabets to ensure janky-ass datamapper callbacks really get called
+    Alphabet.all.map{|a| a.save }
   end
 
 end
