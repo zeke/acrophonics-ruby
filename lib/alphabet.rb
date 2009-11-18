@@ -19,8 +19,11 @@ class Alphabet
   end
   before :save, :generate_permalink
   
+  # Converts non-alphanumeric characters to a space, then removes excess whitespace.
+  # If a word is not found, the letter is used.
   def spell(phrase)
     spelling = []
+    phrase = phrase.gsub(/\W/, " ").gsub("_", " ").split(" ").join(" ")
     phrase.strip.downcase.split("").each do |character|
       word = self.letters.first(:character => character).clean_word rescue nil
       word ||= character.dup # Set to character first to be safe.

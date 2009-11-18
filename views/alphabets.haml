@@ -1,6 +1,4 @@
 -for alphabet in @alphabets
-  %div.spelling
-    %p.spelling= alphabet.spell(('a'..'z').to_a.join(""))
-    %p.source
-      = link_to(alphabet.name, "/alphabets/#{alphabet.permalink}")
-      = "(#{alphabet.language.strip})" unless alphabet.language.nil? || alphabet.language.empty?
+  %p
+    = link_to(alphabet.name, "/alphabets/#{alphabet.permalink}")
+    = "(#{alphabet.language.strip})" unless alphabet.language.nil? || alphabet.language.empty?

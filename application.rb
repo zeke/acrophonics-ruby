@@ -16,7 +16,8 @@ helpers do
   def header
     items = []
     items << link_to(SiteConfig.title, "/")
-    items << link_to("alphabets", "/") if @alphabet
+    items << "API" if request.path.include? "/api"
+    items << link_to("alphabets", "/alphabets") if @alphabet
     items << link_to(@alphabet.name, "/alphabets/#{@alphabet.id}") if @alphabet
     items << "spell" if @query
     items << content_tag(:em, @query.phrase) if @query
@@ -47,7 +48,6 @@ before do
 end
 
 get '/' do
-  @alphabets = Alphabet.all
   haml :root
 end
 
@@ -64,6 +64,15 @@ end
 get '/alphabets' do
   @alphabets = Alphabet.all
   haml :alphabets
+end
+
+get '/alphabets.json' do
+  content_type 'application/json', :charset => 'utf-8'
+  Alphabet.all.to_json(:methods => [:words], :exclude => [:id, :created_at, :updated_at])
+end
+
+get '/api' do
+  haml :api
 end
 
 get '/alphabets/:permalink/spell/*.*' do

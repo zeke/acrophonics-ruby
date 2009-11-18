@@ -15,9 +15,9 @@ body
   :color #444
   
 #bar
-  height: 25px
-  margin: 0 0 15px 0
-  background: red url(../images/bar.png) repeat
+  height: 50px
+  margin: 0 0 10px 0
+  background: red url(../images/bar.png) repeat-x
   
 #main_column
   float: left
@@ -105,6 +105,8 @@ p
   &.source
     :font-size .9em
     color = !brown
+  &.spacious
+    :padding-bottom 10px
 
 ul.queries
   margin: 5px 0
@@ -113,6 +115,13 @@ ul.queries
     font-size: 1.1em
     padding-left: 2px
     list-style-type: none
+
+ul.samples
+  margin: 0
+  padding: 0
+  li
+    font-size: 1.1em
+    list-style: none
       
 #footer
   float: none

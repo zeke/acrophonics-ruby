@@ -1,11 +1,16 @@
-%p
+%p.spacious
   Notes:
   = @alphabet.notes
   
-%p
+%p.spacious
   Year: 
   = @alphabet.year
 
-%p
+%p.spacious
   Words: 
   = @alphabet.words
+  
+%p.spacious
+  JSON: 
+  = link_to("/alphabets/#{@alphabet.permalink}.json")
+      
