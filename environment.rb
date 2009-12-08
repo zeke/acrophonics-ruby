@@ -24,22 +24,22 @@ configure do
   # DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db")
   DataMapper.setup(:default, ENV['DATABASE_URL'] || 'mysql://localhost/acrophonics')
   
-  configure :development do
-    DataMapper.setup(:default, {
-      :adapter  => 'mysql',
-      :host     => 'localhost',
-      :username => 'root',
-      :password => '',
-      # :encoding => 'utf8',
-      :database => 'acrophonics'
-      }
-    )
-    DataMapper::Logger.new(STDOUT, :debug)
-  end
-
-  configure :production do
-    DataMapper.setup(:default, ENV['DATABASE_URL'])
-  end
+  # configure :development do
+  #   DataMapper.setup(:default, {
+  #     :adapter  => 'mysql',
+  #     :host     => 'localhost',
+  #     :username => 'root',
+  #     :password => '',
+  #     # :encoding => 'utf8',
+  #     :database => 'acrophonics'
+  #     }
+  #   )
+  #   DataMapper::Logger.new(STDOUT, :debug)
+  # end
+  # 
+  # configure :production do
+  #   DataMapper.setup(:default, ENV['DATABASE_URL'])
+  # end
 
   # load models
   $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
