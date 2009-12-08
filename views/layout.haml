@@ -36,6 +36,15 @@
         %input{:type => "text", :name => "phrase", :class => "text watermarkable", :value => (@query ? @query.phrase : ""), :title => "Enter a word or phrase"}
         %button{:type => "submit"}
           = image_tag "button.png"
+          
+        - if @alphabet || (@alphabets && @alphabets.size == 1)
+          - alphabet = @alphabet || @alphabets.first
+          %div.radio
+            %input{:type => "radio", :name => "alphabet", :value => "all", :id => "alphabet_all"}
+            %label{:for => "alphabet_all"} All Alphabets
+          %div.radio
+            %input{:type => "radio", :name => "alphabet", :value => alphabet.permalink, :id => "alphabet_#{alphabet.permalink}", :checked => true}
+            %label{:for => "alphabet_#{alphabet.permalink}"}= "Just '#{alphabet.name}'"
 
       %h2 Recent queries
       %ul.queries

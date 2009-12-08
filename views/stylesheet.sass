@@ -8,9 +8,10 @@
 
 !red = #a41801
 !brown = #5e4023
+!tan = #CBAE98
 
 body
-  :font-family "typewriter", Georgia, serif
+  font-family: Courier, "Courier New", Georgia, serif
   background: #B8A079 url(../images/bg.jpg) repeat
   :color #444
   
@@ -39,18 +40,20 @@ ul#header
     display: block
     float: left
     list-style: none
-    font-size: 2.3em
-    padding: 0 5px 0 5px
+    font-size: 1.1em
+    padding: 0 3px
     color: black
-    &:before
-      content: "/ "
+    &.delimiter
+      color = !brown
+    em
+      font-style: normal
+      font-weight: bold
+      color: black
     a
       :text-decoration none
       :color black
     &.first
       padding-left: 0
-      &:before
-        content: none
       a
         :padding-left 0
         
@@ -61,7 +64,7 @@ form
   input
     &.text
       float: left
-      font-size: 1.3em
+      font-size: 1.1em
       padding: 4px
       width: 200px
       background: transparent
@@ -76,18 +79,36 @@ form
     float: left
     border: none
     background-color: transparent
+    
+  div.radio
+    float: none
+    clear: both
+    overflow: hidden
+    padding: 2px 0
+    input
+      float: left
+      padding: 0
+      margin: 0
+    label
+      float: left
+      padding: 0px 0 0 5px
+      color = !brown
+      font-weight: normal
 
 h2
   :color black
   :font-weight normal
-  :font-size 1.7em
+  :font-size 1em
   :margin 20px 0 2px 0
 
 a
   color = !red
   text-decoration: none
  
- 
+span.blank
+  color = !brown
+  font-style: italic
+
 div.spelling 
   margin-bottom: 15px
 p
@@ -98,12 +119,12 @@ p
   margin: 0
   &.big
     :padding-bottom 10px
-    :font-size 1.3em
+    :font-size 1em
   &.spelling
-    :font-family "typewriter", Georgia, serif
-    :font-size 1.3em
+    font-family: Courier, "Courier New", Georgia, serif
+    font-size: 1.1em
   &.source
-    :font-size .9em
+    :font-size 1em
     color = !brown
   &.spacious
     :padding-bottom 10px
@@ -129,5 +150,5 @@ ul.samples
   overflow: hidden
   margin: 30px 0 0 0
   p
-    font-size: .9em
+    font-size: 1.1em
     color = !brown

@@ -21,8 +21,7 @@ helpers do
     items << link_to(@alphabet.name, "/alphabets/#{@alphabet.id}") if @alphabet
     items << "spell" if @query
     items << content_tag(:em, @query.phrase) if @query
-    
-    content_tag(:ul, convert_to_list_items(items), :id => "header")
+    content_tag(:ul, convert_to_list_items_with_delimiters(items), :id => "header")
   end
   
   def convert_to_list_items(items)
@@ -32,6 +31,24 @@ helpers do
       css << "last" if items.last == item
       all << content_tag(:li, item, :class => css.join(" "))
     end.join("\n")
+  end
+  
+  def convert_to_list_items_with_delimiters(items, options={})
+    options[:delimiter] ||= "/"
+    all_items = []
+    items.each do |item|
+      css = []
+      css << "first" if items.first == item
+      css << "last" if items.last == item
+      all_items << content_tag(:li, item, :class => css.join(" "))
+      all_items << content_tag(:li, options[:delimiter], :class => "delimiter") unless item == items.last
+    end
+    all_items.join("\n")
+  end
+  
+  def value_or_blank(value)
+    return content_tag(:span, "(None)", :class => "blank") if value.blank?
+    value
   end
 
   def save_query(phrase)
@@ -44,7 +61,6 @@ end
 before do
   headers "Content-Type" => "text/html; charset=utf-8"
   @queries = Query.all(:order => [:created_at.desc], :limit => 20)
-  
 end
 
 get '/' do
@@ -52,7 +68,11 @@ get '/' do
 end
 
 post '/spellpost' do
-  redirect "/spell/#{params[:phrase]}"
+  if params[:alphabet].blank? || params[:alphabet].downcase == "all"
+    redirect "/spell/#{params[:phrase]}"
+  else
+    redirect "/alphabets/#{params[:alphabet]}/spell/#{params[:phrase]}" 
+  end
 end
 
 get '/spell/:phrase' do

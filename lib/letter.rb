@@ -8,11 +8,23 @@ class Letter
   property :updated_at, DateTime
 
   belongs_to :alphabet
-  validates_present :name
+  validates_present :word, :character
   
-  def clean_word  
-    return self.word unless self.word[1,1] == "-"
-    return self.word[2,(self.word.size-2)]
+  def clean_word      
+    self.word.
+    gsub(/^.-/, ""). # protect against words that start with two bad chars.. can't remember why.
+    gsub("e'", "é").
+    gsub("c,", "ç").
+    gsub("i`", "ì").
+    gsub("n~", "ñ").
+    gsub("a'", "á").
+    gsub('"a', "ä").
+    gsub('a"', "ä")
+  end
+  
+  def fix_accents
+    word.gsub!("e'", "é")
+    save!
   end
 
 end

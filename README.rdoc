@@ -1,7 +1,7 @@
 = Acrophonics, aka Spelling Alphabets (Alpha, Bravo, Charlie)
 
 This project is a Sinatra application and accompanying database of spelling 
-alphabets from around the world.
+alphabets from around the world. Check it out at {acrophonics.heroku.com}[http://acrophonics.heroku.com].
 
 A spelling alphabet, radio alphabet, or telephone alphabet is a set of words which 
 are used to stand for the letters of an alphabet. Each word in the spelling alphabet 
@@ -20,3 +20,10 @@ This truly frustrating video demonstrates the McGurk Effect:
 
 This app was inspired by the collection of alphabets found at 
 {http://www.bckelk.ukfsn.org/phon.full.html}[http://www.bckelk.ukfsn.org/phon.full.html]
+
+== Notes
+
+* How to use xpath or something for inspecting body in tests? (eg body > #header > ul > li > a['foo'] )
+* Create a Language model and associate alphabets to it, rather than hardcoding the alphabet as a string attribute.
+* Joint? Spike Lee?
+* Multiple random images? Radio/Militant
